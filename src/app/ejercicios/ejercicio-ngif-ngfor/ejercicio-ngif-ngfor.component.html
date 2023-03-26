@@ -1,0 +1,31 @@
+
+
+<app-loading *ngIf="loading"></app-loading>
+<div class="container-fluid">
+  <h1 class="mb-3">
+    Lista de Alumnos
+  </h1>
+  <table class="table table-stripped">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nombre del Alumno</th> 
+        <th>E-mail</th>
+        <th>Materia</th>
+        <th>Horario de Clase</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let alumno of alumnos"  [ngClass]="alumno.isTop10 ? 'table-success' : ''">
+        <td>{{alumno.id}}</td>
+        <td>{{alumno.fullName | uppercase }}</td>
+        <td>{{alumno.email}}</td>
+        <td>{{alumno.materia | uppercase }}</td>
+        <td>{{alumno.horario | date: 'short' }}</td>
+  
+        <td><button [id]="alumno.id" (click)="alumno.alternarTop10($event)">En clase</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
